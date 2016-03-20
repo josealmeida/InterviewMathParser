@@ -8,10 +8,11 @@ class InterviewMathParser:
     """
     Implementation of a custom mathematical parser that takes a string
     expression and computes its numerical value.
+
     The parser implements an order of precedence of left to right.
     Brackets are used to explicitly denote precedence by grouping parts
-    of an expression that should be evaluated
-    first again left to right.
+    of an expression that should be evaluated first again left to right.
+
     Rules: a = '+', b = '-', c = '*', d = '/', e = '(', f = ')'
     """
 
@@ -65,7 +66,8 @@ class InterviewMathParser:
     def parse_expression(self):
         """
         Parses an expression
-        :return:
+
+        :return: the result of the expression calculation
         """
         result = self.term()
         while self.current_token in ('+', '-', '*', '/'):
@@ -86,7 +88,8 @@ class InterviewMathParser:
     def term(self):
         """
         Evaluates current token as term or expression with precedence
-        :return:
+
+        :return: the current term or expression
         """
         result = None
         if self.current_token.isdigit():
@@ -101,7 +104,6 @@ class InterviewMathParser:
     def next_token(self):
         """
         Updates the current token
-        :return:
         """
         self.sub_tokens = self.sub_tokens[1:]
         self.current_token = self.sub_tokens[0] \
