@@ -1,6 +1,7 @@
 import argparse
 import logging
 import logging.config
+import os
 
 
 class InterviewMathParser:
@@ -17,16 +18,19 @@ class InterviewMathParser:
         self.tokens = []
         self.sub_tokens = []
         self.current_token = None
+        self.result = None
 
-        logging.config.fileConfig('logging.conf')
+        logging.config.fileConfig(os.path.dirname(os.path.abspath(__file__))+os.sep+'logging.conf')
         self.logger = logging.getLogger('InterviewMathParser')
 
-    def prepare_tokens(self, input_string):
+        self.prepare_tokens()
+        self.result = int(self.parse_expression())
+
+    def prepare_tokens(self):
         """Creates a list of tokens from the input string
-        :param input_string:
         """
 
-        input_list = list(input_string)
+        input_list = list(self.input)
         for i in range(len(input_list)):
             if i > 0:
                 # appends sequential digits
@@ -98,12 +102,10 @@ class InterviewMathParser:
         self.current_token = self.sub_tokens[0] if len(self.sub_tokens) > 0 else None
 
 if __name__ == '__main__':
-    # If invoked from the command line it takes the fist argument as input
+    # If invoked from the command line the parser takes the fist argument as input
     arg_parser = argparse.ArgumentParser()
     arg_parser.add_argument('input', help="input string expression", type=str)
     arg_input = arg_parser.parse_args().input
 
-    math_parser = InterviewMathParser()
-    math_parser.prepare_tokens(arg_input)
-    print(int(math_parser.parse_expression()))
-
+    math_parser = InterviewMathParser(arg_input)
+    print(math_parser.result)
