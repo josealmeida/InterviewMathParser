@@ -14,7 +14,7 @@ default_task = "publish"
 
 @init
 def set_properties(project):
-    project.version = ""
+    project.version = "1.0"
     project.set_property('dir_source_main_python', 'interview_math_parser')
     project.set_property('dir_source_main_scripts', 'scripts')
     project.set_property('dir_source_unittest_python', 'tests')
