@@ -1,0 +1,4 @@
+To install interview_math_parser make sure you have Python 3 or greater installed.
+Then run this command from the command prompt:
+
+python setup.py install
