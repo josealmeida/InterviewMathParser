@@ -6,9 +6,11 @@ import os
 
 class InterviewMathParser:
     """
-    Implementation of a custom mathematical parser that takes a string expression and computes its numerical value.
+    Implementation of a custom mathematical parser that takes a string
+    expression and computes its numerical value.
     The parser implements an order of precedence of left to right.
-    Brackets are used to explicitly denote precedence by grouping parts of an expression that should be evaluated
+    Brackets are used to explicitly denote precedence by grouping parts
+    of an expression that should be evaluated
     first again left to right.
     Rules: a = '+', b = '-', c = '*', d = '/', e = '(', f = ')'
     """
@@ -20,7 +22,10 @@ class InterviewMathParser:
         self.current_token = None
         self.result = None
 
-        logging.config.fileConfig(os.path.dirname(os.path.abspath(__file__))+os.sep+'logging.conf')
+        logging.config.fileConfig(
+            os.path.dirname(os.path.abspath(__file__)) +
+            os.sep +
+            'logging.conf')
         self.logger = logging.getLogger('InterviewMathParser')
 
         self.prepare_tokens()
@@ -99,10 +104,13 @@ class InterviewMathParser:
         :return:
         """
         self.sub_tokens = self.sub_tokens[1:]
-        self.current_token = self.sub_tokens[0] if len(self.sub_tokens) > 0 else None
+        self.current_token = self.sub_tokens[0] \
+            if len(self.sub_tokens) > 0 \
+            else None
 
 if __name__ == '__main__':
-    # If invoked from the command line the parser takes the fist argument as input
+    # If invoked from the command line
+    # the parser takes the fist argument as input
     arg_parser = argparse.ArgumentParser()
     arg_parser.add_argument('input', help="input string expression", type=str)
     arg_input = arg_parser.parse_args().input
